@@ -50,6 +50,7 @@ const ProductDetail = () => {
     setTimeout(() => {
       setShowAlert(false);
     }, 3000);
+    setLoading(false);
   };
 
   return (

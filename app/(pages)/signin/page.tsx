@@ -9,6 +9,7 @@ const Signin = () => {
   const handleGoogleSignIn = () => {
     setLoading(true);
     signIn("google");
+    setLoading(false);
   };
 
   return (

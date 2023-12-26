@@ -14,6 +14,7 @@ const Searchbar: React.FC<SearchbarProps> = ({ width, height, type }) => {
   const handleSearch = (searchTerm: string) => {
     setLoading(true);
     router.push(`/search/${searchTerm}`);
+    setLoading(false);
   };
 
   return (

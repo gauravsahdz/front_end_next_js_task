@@ -18,6 +18,7 @@ const ProductCard = (product: Product) => {
   const handleClick = () => {
     setLoading(true);
     router.push(`/products/${id}`);
+    setLoading(false);
   };
 
   const handleAddToCart = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -29,6 +30,7 @@ const ProductCard = (product: Product) => {
     setTimeout(() => {
       setShowAlert(false);
     }, 3000);
+    setLoading(false);
   };
 
   return (

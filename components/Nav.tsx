@@ -29,6 +29,7 @@ const Nav = () => {
       setLoading(true);
       const response = await getProviders();
       setProviders(response);
+      setLoading(false);
     };
 
     setUpProviders();
@@ -37,6 +38,7 @@ const Nav = () => {
   const handleClick = () => {
     setLoading(true);
     router.push("/signin")
+    setLoading(false);
   }
 
   const navClass = `navbar flex flex-wrap items-center justify-between w-full px-4 py-4 lg:px-0 bg-white z-10 sticky top-0 shadow-md
