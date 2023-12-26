@@ -3,15 +3,15 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { Product } from "@/types/product";
 import { useCartStore } from "@/reducers/useCartStore";
-import Alert from "./Alert";
 import { LoaderContext } from "@/context/LoaderProvider";
+import { AlertContext } from "@/context/AlertProvider";
 
 const ProductCard = (product: Product) => {
   const router = useRouter();
   const [key, setKey] = React.useState(0);
   const addToCart = useCartStore((state) => state.addToCart);
-  const [showAlert, setShowAlert] = React.useState(false);
   const {setLoading} = React.useContext(LoaderContext);
+  const {showAlert} = React.useContext(AlertContext);
 
   const { id, image, title, price } = product;
 
@@ -26,9 +26,9 @@ const ProductCard = (product: Product) => {
     setLoading(true);
     setKey((prevKey) => prevKey + 1);
     addToCart(product as Product);
-    setShowAlert(true);
+    showAlert(true, "success", "Product added to cart", key);
     setTimeout(() => {
-      setShowAlert(false);
+      showAlert(false, "success", "Product added to cart", key);
     }, 3000);
     setLoading(false);
   };
@@ -38,12 +38,6 @@ const ProductCard = (product: Product) => {
       className="w-72 bg-white shadow-md rounded-xl duration-500 cursor-pointer"
       onClick={handleClick}
     >
-      <Alert
-        type="success"
-        message="Product added to cart"
-        show={showAlert}
-        key={key}
-      />
       <a>
         <img
           src={image}

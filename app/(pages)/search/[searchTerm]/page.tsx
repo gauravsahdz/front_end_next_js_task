@@ -4,18 +4,33 @@ import React, { useEffect, useState } from "react";
 import useProductStore from "@/reducers/useProductStore";
 import { Product } from "@/types/product";
 import ProductCard from "@/components/ProductCard";
+import { LoaderContext } from "@/context/LoaderProvider";
+import { AlertContext } from "@/context/AlertProvider";
 
 const Page = () => {
   const { searchTerm } = useParams();
   const { products } = useProductStore();
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const { setLoading } = React.useContext(LoaderContext);
+  const { showAlert } = React.useContext(AlertContext);
 
   useEffect(() => {
     const filterProducts = async () => {
-      const filtered = products.filter((p) =>
-        p.title.toLowerCase().includes(searchTerm)
-      );
-      setFilteredProducts(filtered);
+      try {
+        setLoading(true);
+        const filtered = products.filter((p) =>
+          p.title.toLowerCase().includes(searchTerm)
+        );
+        setFilteredProducts(filtered);
+      } catch (error) {
+        setLoading(true);
+        showAlert(true, "error", "Error fetching products", 0);
+        setTimeout(() => {
+          showAlert(false, "error", "Error fetching products", 0);
+        }, 2000);
+      } finally {
+        setLoading(false);
+      }
     };
 
     filterProducts();

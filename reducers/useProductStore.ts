@@ -47,7 +47,6 @@ const useProductStore = create<ProductStore>((set) => ({
 
   getCategoryProducts: async (category) => {
     const categoryProducts = await getProductsByCategory(category);
-    console.log(categoryProducts);
     set({ categoryProducts });
     return categoryProducts;
   },

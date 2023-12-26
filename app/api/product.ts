@@ -4,7 +4,6 @@ import axios from "axios";
 async function getProducts() {
   try {
     const response = await axios.get("https://fakestoreapi.com/products");
-    console.log("1",response.data);
     return response.data;
   } catch (error) {
     console.error("Error retrieving products:", error);

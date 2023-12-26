@@ -2,23 +2,36 @@
 import React, { useEffect } from "react";
 import ProductCard from "../../../components/ProductCard";
 import useProductStore from "@/reducers/useProductStore";
-import { Product } from "@/types/product";
 import { LoaderContext } from "@/context/LoaderProvider";
 import Hero from "./hero";
+import { AlertContext } from "@/context/AlertProvider";
 
 const HomePage = () => {
   const { products, getAllProducts } = useProductStore();
   const { setLoading } = React.useContext(LoaderContext);
+  const { showAlert } = React.useContext(AlertContext);
+  const [key, setKey] = React.useState(0);
 
   useEffect(() => {
     const fetchProducts = async () => {
-      await getAllProducts();
+      setKey((prevKey) => prevKey + 1);
+      try {
+        setLoading(true);
+        await getAllProducts();
+      } catch (error) {
+        setLoading(true);
+        showAlert(true, "error", "Error fetching products", key);
+        setTimeout(() => {
+          showAlert(false, "error", "Error fetching products", key);
+        }, 2000);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchProducts();
-  }, [getAllProducts, setLoading]);
+  }, []);
 
-  // fetching a random product to display in the hero section
-  const randomProduct = products[0];
+  const randomProduct = products[Math.floor(Math.random() * products.length)];
 
   return (
     <div className="flex flex-col min-h-96">

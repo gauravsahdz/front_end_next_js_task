@@ -9,6 +9,7 @@ import Head from "next/head";
 import AuthProvider from "@/context/AuthProvider";
 import { LoaderProvider } from "@/context/LoaderProvider";
 import React from "react";
+import { AlertProvider } from "@/context/AlertProvider";
 
 export default function RootLayout({
   children,
@@ -20,9 +21,11 @@ export default function RootLayout({
       <body>
         <AuthProvider session={null}>
           <LoaderProvider>
-            <Nav />
-            {children}
-            <Footer />
+            <AlertProvider>
+              <Nav />
+              {children}
+              <Footer />
+            </AlertProvider>
           </LoaderProvider>
         </AuthProvider>
       </body>

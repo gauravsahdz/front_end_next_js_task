@@ -2,20 +2,20 @@
 import { useCartStore } from "@/reducers/useCartStore";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import { Product } from "@/types/product";
-import Alert from "@/components/Alert";
 import "@/styles/components/_productDetail.css";
 import Head from "next/head";
 import ProductCard from "@/components/ProductCard";
 import useProductStore from "@/reducers/useProductStore";
 import { LoaderContext } from "@/context/LoaderProvider";
+import { AlertContext } from "@/context/AlertProvider";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const [key, setKey] = React.useState(0);
-  const [showAlert, setShowAlert] = React.useState(false);
   const { setLoading } = React.useContext(LoaderContext);
+  const { showAlert } = React.useContext(AlertContext);
   const {
     singleProduct,
     getSingleProduct,
@@ -25,14 +25,41 @@ const ProductDetail = () => {
 
   const addToCart = useCartStore((state) => state.addToCart);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
-      await getSingleProduct(Number(id));
-      await getCategoryProducts(singleProduct?.category as string);
+      setKey((prevKey) => prevKey + 1);
+      try {
+        setLoading(true);
+        await getSingleProduct(Number(id));
+        await fetchCategoryProducts();
+      } catch (error) {
+        setLoading(true);
+        showAlert(true, "error", "Error fetching detail", key);
+        setTimeout(() => {
+          showAlert(false, "error", "Error fetching detail", key);
+        }, 2000);
+      } finally {
+        setLoading(false);
+      }
+    };
+    const fetchCategoryProducts = async () => {
+      try {
+        setLoading(true);
+        await getCategoryProducts(singleProduct?.category as string);
+      } catch (error) {
+        setLoading(true);
+        showAlert(true, "error", "Error fetching detail", key);
+        setTimeout(() => {
+          showAlert(false, "error", "Error fetching detail", key);
+        }, 2000);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchData();
-  }, [id, getCategoryProducts, getSingleProduct, singleProduct?.category, setLoading]);
+
+  }, [id]);
 
   if (!singleProduct) {
     return null;
@@ -44,9 +71,9 @@ const ProductDetail = () => {
     setLoading(true);
     setKey((prevKey) => prevKey + 1);
     addToCart(singleProduct as Product);
-    setShowAlert(true);
+    showAlert(true, "success", "Product added to cart", key);
     setTimeout(() => {
-      setShowAlert(false);
+      showAlert(false, "success", "Product added to cart", key);
     }, 3000);
     setLoading(false);
   };
@@ -68,12 +95,6 @@ const ProductDetail = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <div className="product_detail_container flex flex-col items-center justify-center w-full px-4 lg:px-0">
-        <Alert
-          type="success"
-          message="Product added to cart"
-          show={showAlert}
-          key={key}
-        />
         <div className="flex flex-col lg:flex-row items-center justify-center space-y-4 lg:space-y-0 lg:space-x-4 md:px-8 lg:px-16 lg:py-16 bg-white">
           <Image src={image} alt={title} width={300} height={300} />
           <div className="flex flex-col justify-center items-start space-y-4 w-full lg:w-1/2 px-4 lg:px-0 lg:py-8 md:py-8 lg:py-0">

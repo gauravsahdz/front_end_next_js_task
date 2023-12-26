@@ -1,4 +1,5 @@
 "use client";
+import { AlertContext } from "@/context/AlertProvider";
 import { LoaderContext } from "@/context/LoaderProvider";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
@@ -6,10 +7,20 @@ import React from "react";
 
 const Signin = () => {
   const { setLoading } = React.useContext(LoaderContext);
+  const [key, setKey] = React.useState(0);
+  const { showAlert } = React.useContext(AlertContext);
+
   const handleGoogleSignIn = () => {
-    setLoading(true);
-    signIn("google");
-    setLoading(false);
+    setKey((prevKey) => prevKey + 1);
+    try {
+      setLoading(true);
+      signIn("google");
+    } catch (error) {
+      setLoading(true);
+      showAlert(true, "error", "Error fetching products", key);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
