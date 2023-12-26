@@ -23,7 +23,7 @@ export const LoaderProvider: React.FC<{ children: ReactNode }> = ({
   return (
     <LoaderContext.Provider value={{ isLoading, setLoading }}>
       {children}
-      <LoadingBar progress={isLoading ? 100 : 0} height={3} color="#007bff" />
+      <LoadingBar progress={isLoading ? 100 : 0} height={3} color="#818CF8" />
     </LoaderContext.Provider>
   );
 };

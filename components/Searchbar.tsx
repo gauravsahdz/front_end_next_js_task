@@ -28,7 +28,7 @@ const Searchbar: React.FC<SearchbarProps> = ({ width, height, type }) => {
         className={`w-${width} py-2 ${
           type === "navbar" ? "pl-2" : "pl-10"
         } pr-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-indigo-500 h-${height}`}
-        placeholder={type === "navbar" ? "Search" : "Search for products"}
+        placeholder={type === "navbar" ? "Search gold" : "Search for products like gold, jacket..."}
         onChange={(e) => handleSearch(e.target.value)}
       />
       <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
