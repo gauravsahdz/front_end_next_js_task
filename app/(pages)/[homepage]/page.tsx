@@ -20,8 +20,7 @@ const HomePage = () => {
   }, [getAllProducts, setLoading]);
 
   // fetching a random product to display in the hero section
-  const randomProduct: Product =
-    products[Math.floor(Math.random() * products.length)];
+  const randomProduct = products[0];
 
   return (
     <div className="flex flex-col min-h-96">
