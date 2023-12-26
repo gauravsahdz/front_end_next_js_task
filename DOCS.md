@@ -6,14 +6,14 @@ This documentation provides information on how to set up and run the web app mad
 
 Before running the code locally, make sure you have the following installed:
 
-- Node.js (version X.X.X or higher)
-- Git
+- Node.js (v18.16 or higher)
+- Next.js (v13.15 or higher)
 
 ## Deployment
 
 The web app is deployed on Vercel and can be accessed using the following link:
 
-[https://online-store-psi.vercel.app/](https://online-store-psi.vercel.app/)
+[https://online-store-nepal.vercel.app/](https://online-store-nepal.vercel.app/)
 
 ## Installation
 
@@ -22,7 +22,7 @@ To install the web app, follow these steps:
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/your-repo.git
+   git clone https://github.com/gauravsahdz/front_end_next_js_task.git
    ```
 
 2. Navigate to the project directory:
