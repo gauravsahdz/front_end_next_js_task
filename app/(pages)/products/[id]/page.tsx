@@ -27,10 +27,8 @@ const ProductDetail = () => {
 
   React.useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
       await getSingleProduct(Number(id));
       await getCategoryProducts(singleProduct?.category as string);
-      setLoading(false);
     };
 
     fetchData();
