@@ -11,6 +11,7 @@ import { navRoutes } from "@/utils/routes";
 import { signIn, useSession, getProviders, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import hamburgerIcon from "public/images/hamburger.svg";
+import Searchbar from "./Searchbar";
 
 const Nav = () => {
   const { data: session } = useSession();
@@ -39,8 +40,14 @@ const Nav = () => {
     <div className={navClass}>
       <div className="flex items-center flex-shrink-0 text-black mr-6 hover:cursor-pointer ml-4">
         <Link href="/" legacyBehavior>
-          <h1>OnlineStore</h1>
+          <h1 className="font-bold text-2xl ml-0 lg:ml-8">
+            Online
+            <span className="text-indigo-400">Store</span>
+          </h1>
         </Link>
+      </div>
+      <div className="hidden lg:block w-1/2">
+        <Searchbar width="full" height="full" type="" />
       </div>
       <div
         className="lg:flex lg:items-center lg:w-auto w-full lg:block hidden"
@@ -137,6 +144,7 @@ const Nav = () => {
         </button>
         {toggleNavDropdown && (
           <div className="absolute right-0 top-16 bg-white shadow-md rounded-md py-2 px-4 flex flex-col w-40">
+            <Searchbar width="full" height="8" type="navbar" />
             <Link
               href="/"
               className="text-sm font-inter text-gray-700 hover:text-gray-500 font-medium mb-2"

@@ -11,3 +11,11 @@ export interface Product {
   };
   quantity?: number;
 }
+
+export interface Products {
+  products: Product[];
+  singleProduct: Product | null;
+  limitedProducts: Product[];
+  sortedProducts: Product[];
+  categoryProducts: Product[];
+}

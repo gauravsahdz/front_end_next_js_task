@@ -10,10 +10,10 @@ type AlertProps = {
 const Alert = ({ type, message, show, key }: AlertProps) => {
   useEffect(() => {
     setTimeout(() => {
-      const alert = document.querySelector(
+      document.querySelector(
         '[data-dismissible="alert"]'
       ) as HTMLElement;
-      alert.style.opacity = "0";
+      // alert.style.opacity = "0"; //
     }, 3000);
   }, []);
 
@@ -41,10 +41,10 @@ const Alert = ({ type, message, show, key }: AlertProps) => {
           role="button"
           className="w-max rounded-lg p-1"
           onClick={() => {
-            const alert = document.querySelector(
+            document.querySelector(
               '[data-dismissible="alert"]'
             ) as HTMLElement;
-            alert.style.opacity = "0";
+            // alert.style.opacity = "0";
           }}
         >
           <svg
