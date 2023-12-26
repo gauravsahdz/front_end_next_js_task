@@ -3,8 +3,8 @@ import React, { useEffect } from "react";
 import ProductCard from "../../../components/ProductCard";
 import useProductStore from "@/reducers/useProductStore";
 import { Product } from "@/types/product";
-import Hero from "./Hero";
 import { LoaderContext } from "@/context/LoaderProvider";
+import Hero from "./Hero";
 
 const HomePage = () => {
   const { products, getAllProducts } = useProductStore();
