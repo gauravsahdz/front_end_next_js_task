@@ -3,18 +3,23 @@ import React, { useEffect } from "react";
 import ProductCard from "../../../components/ProductCard";
 import useProductStore from "@/reducers/useProductStore";
 import { Product } from "@/types/product";
-import Hero from "./hero";
+import Hero from "./Hero";
+import { LoaderContext } from "@/context/LoaderProvider";
 
 const HomePage = () => {
   const { products, getAllProducts } = useProductStore();
+  const { setLoading } = React.useContext(LoaderContext);
 
   useEffect(() => {
     const fetchProducts = async () => {
+      setLoading(true);
       await getAllProducts();
+      setLoading(false);
     };
     fetchProducts();
-  }, [getAllProducts]);
+  }, [getAllProducts, setLoading]);
 
+  // fetching a random product to display in the hero section
   const randomProduct: Product =
     products[Math.floor(Math.random() * products.length)];
 

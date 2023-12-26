@@ -1,21 +1,18 @@
 "use client";
+import { LoaderContext } from "@/context/LoaderProvider";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const Signin = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const router = useRouter();
-
+  const { setLoading } = React.useContext(LoaderContext);
   const handleGoogleSignIn = () => {
+    setLoading(true);
     signIn("google");
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center flex-col bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-start flex-col bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
           Sign In
@@ -24,7 +21,7 @@ const Signin = () => {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <div>
+          {/* <div>
             <div className="mb-4">
               <label
                 htmlFor="email"
@@ -66,7 +63,7 @@ const Signin = () => {
                 Sign In
               </button>
             </div>
-          </div>
+          </div> */}
           <div>
             <div className="mb-6">
               <button

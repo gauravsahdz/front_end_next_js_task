@@ -1,9 +1,10 @@
 import axios from "axios";
 
 // Get all products
-async function getAllProducts() {
+async function getProducts() {
   try {
     const response = await axios.get("https://fakestoreapi.com/products");
+    console.log("1",response.data);
     return response.data;
   } catch (error) {
     console.error("Error retrieving products:", error);
@@ -50,4 +51,4 @@ async function getProductsByCategory(category: string) {
   }
 }
 
-export { getAllProducts, getProductById, getCategories, getProductsByCategory };
+export { getProducts, getProductById, getCategories, getProductsByCategory };

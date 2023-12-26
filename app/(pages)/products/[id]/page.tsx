@@ -4,17 +4,18 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import React from "react";
 import { Product } from "@/types/product";
-// import { getProductById, getProductsByCategory } from "../../../api/product";
 import Alert from "@/components/Alert";
 import "@/styles/components/_productDetail.css";
 import Head from "next/head";
 import ProductCard from "@/components/ProductCard";
 import useProductStore from "@/reducers/useProductStore";
+import { LoaderContext } from "@/context/LoaderProvider";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const [key, setKey] = React.useState(0);
   const [showAlert, setShowAlert] = React.useState(false);
+  const { setLoading } = React.useContext(LoaderContext);
   const {
     singleProduct,
     getSingleProduct,
@@ -26,12 +27,14 @@ const ProductDetail = () => {
 
   React.useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       await getSingleProduct(Number(id));
       await getCategoryProducts(singleProduct?.category as string);
+      setLoading(false);
     };
 
     fetchData();
-  }, [id, getCategoryProducts, getSingleProduct, singleProduct?.category]);
+  }, [id, getCategoryProducts, getSingleProduct, singleProduct?.category, setLoading]);
 
   if (!singleProduct) {
     return null;
@@ -40,13 +43,13 @@ const ProductDetail = () => {
   const { title, description, image, price } = singleProduct;
 
   const handleAddToCart = () => {
+    setLoading(true);
     setKey((prevKey) => prevKey + 1);
     addToCart(singleProduct as Product);
     setShowAlert(true);
-  };
-
-  const handleBuyNow = () => {
-    alert("not implemented");
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 3000);
   };
 
   return (
@@ -86,12 +89,6 @@ const ProductDetail = () => {
                 className="bg-black text-white px-4 py-2 rounded-md border border-black hover:bg-white hover:text-black transition duration-500"
               >
                 Add to Cart
-              </button>
-              <button
-                onClick={handleBuyNow}
-                className="bg-white text-black px-4 py-2 rounded-md border border-black transition duration-500 hover:bg-gray-200"
-              >
-                Buy Now
               </button>
             </div>
           </div>

@@ -1,28 +1,34 @@
 "use client";
-import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "next/navigation";
 import { Product } from "@/types/product";
 import { useCartStore } from "@/reducers/useCartStore";
 import Alert from "./Alert";
+import { LoaderContext } from "@/context/LoaderProvider";
 
 const ProductCard = (product: Product) => {
   const router = useRouter();
   const [key, setKey] = React.useState(0);
   const addToCart = useCartStore((state) => state.addToCart);
   const [showAlert, setShowAlert] = React.useState(false);
+  const {setLoading} = React.useContext(LoaderContext);
 
   const { id, image, title, price } = product;
 
   const handleClick = () => {
+    setLoading(true);
     router.push(`/products/${id}`);
   };
 
   const handleAddToCart = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
+    setLoading(true);
     setKey((prevKey) => prevKey + 1);
     addToCart(product as Product);
     setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 3000);
   };
 
   return (

@@ -22,7 +22,7 @@ const Page = () => {
   }, [searchTerm, products]);
 
   return (
-    <div className="flex-grow h-full">
+    <div className="flex flex-row h-full">
       <div className="container mx-auto p-4">
         <p>
           Showing {filteredProducts.length} results for {searchTerm}:

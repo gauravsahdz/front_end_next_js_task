@@ -5,16 +5,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingBag, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useCartStore } from "@/reducers/useCartStore";
 import Image from "next/image";
-import logo from "../public/images/logo.png";
 import "@/styles/components/_navbar.css";
 import { navRoutes } from "@/utils/routes";
-import { signIn, useSession, getProviders, signOut } from "next-auth/react";
+import { useSession, getProviders, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import hamburgerIcon from "public/images/hamburger.svg";
 import Searchbar from "./Searchbar";
+import { LoaderContext } from "@/context/LoaderProvider";
 
 const Nav = () => {
   const { data: session } = useSession();
+  const {setLoading} = React.useContext(LoaderContext);
   const router = useRouter();
   const [toggleDropdown, setToggleDropdown] = useState(false);
   const [toggleNavDropdown, setToggleNavDropdown] = useState(false);
@@ -25,12 +26,18 @@ const Nav = () => {
 
   useEffect(() => {
     const setUpProviders = async () => {
+      setLoading(true);
       const response = await getProviders();
       setProviders(response);
     };
 
     setUpProviders();
-  }, []);
+  }, [setLoading]);
+
+  const handleClick = () => {
+    setLoading(true);
+    router.push("/signin")
+  }
 
   const navClass = `navbar flex flex-wrap items-center justify-between w-full px-4 py-4 lg:px-0 bg-white z-10 sticky top-0 shadow-md
     ${isAdmin ? "hidden" : ""}
@@ -104,7 +111,7 @@ const Nav = () => {
                   Object.values(providers).map((provider: any) => (
                     <li
                       className="account hover:cursor-pointer"
-                      onClick={() => router.push("/signin")}
+                      onClick={handleClick}
                       key={provider.name}
                     >
                       <a className="lg:p-4 py-3 px-0 block border-b-2 border-transparent">
@@ -151,20 +158,6 @@ const Nav = () => {
               onClick={() => setToggleNavDropdown(false)}
             >
               Home
-            </Link>
-            <Link
-              href="/about"
-              className="text-sm font-inter text-gray-700 hover:text-gray-500 font-medium mb-2"
-              onClick={() => setToggleNavDropdown(false)}
-            >
-              About
-            </Link>
-            <Link
-              href="/contact"
-              className="text-sm font-inter text-gray-700 hover:text-gray-500 font-medium mb-2"
-              onClick={() => setToggleNavDropdown(false)}
-            >
-              Contact
             </Link>
             <Link
               href="/cart"

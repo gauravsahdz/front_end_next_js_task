@@ -1,1 +1,3 @@
-@import '_navbar.scss';
+.dropdown:hover .dropdown-menu {
+  display: block;
+}

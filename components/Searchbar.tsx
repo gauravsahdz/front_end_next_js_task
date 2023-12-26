@@ -1,3 +1,4 @@
+import { LoaderContext } from "@/context/LoaderProvider";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -9,8 +10,9 @@ interface SearchbarProps {
 
 const Searchbar: React.FC<SearchbarProps> = ({ width, height, type }) => {
   const router = useRouter();
-
+  const { setLoading } = React.useContext(LoaderContext);
   const handleSearch = (searchTerm: string) => {
+    setLoading(true);
     router.push(`/search/${searchTerm}`);
   };
 

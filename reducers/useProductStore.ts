@@ -2,7 +2,7 @@
 import create from "zustand";
 import { Product } from "@/types/product";
 import {
-  getAllProducts,
+  getProducts,
   getCategories,
   getProductById,
   getProductsByCategory,
@@ -28,7 +28,7 @@ const useProductStore = create<ProductStore>((set) => ({
 
   // Reducers for different API calls
   getAllProducts: async () => {
-    const products = await getAllProducts();
+    const products = await getProducts();
     set({ products });
     return products;
   },
@@ -47,6 +47,7 @@ const useProductStore = create<ProductStore>((set) => ({
 
   getCategoryProducts: async (category) => {
     const categoryProducts = await getProductsByCategory(category);
+    console.log(categoryProducts);
     set({ categoryProducts });
     return categoryProducts;
   },
