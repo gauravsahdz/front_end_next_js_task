@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingBag, faUser } from "@fortawesome/free-solid-svg-icons";
@@ -7,39 +7,14 @@ import { useCartStore } from "@/reducers/useCartStore";
 import Image from "next/image";
 import "@/styles/components/_navbar.css";
 import { navRoutes } from "@/utils/routes";
-import { useSession, getProviders, signOut } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import hamburgerIcon from "public/images/hamburger.svg";
 import Searchbar from "./Searchbar";
-import { LoaderContext } from "@/context/LoaderProvider";
 
 const Nav = () => {
-  const { data: session } = useSession();
-  const {setLoading} = React.useContext(LoaderContext);
-  const router = useRouter();
-  const [toggleDropdown, setToggleDropdown] = useState(false);
   const [toggleNavDropdown, setToggleNavDropdown] = useState(false);
 
-  const [providers, setProviders] = useState<any>(null);
   const isAdmin: boolean = false;
   const totalItems = useCartStore((state) => state.totalItems);
-
-  useEffect(() => {
-    const setUpProviders = async () => {
-      setLoading(true);
-      const response = await getProviders();
-      setProviders(response);
-      setLoading(false);
-    };
-
-    setUpProviders();
-  }, [setLoading]);
-
-  const handleClick = () => {
-    setLoading(true);
-    router.push("/signin")
-    setLoading(false);
-  }
 
   const navClass = `navbar flex flex-wrap items-center justify-between w-full px-4 py-4 lg:px-0 bg-white z-10 sticky top-0 shadow-md
     ${isAdmin ? "hidden" : ""}
@@ -73,59 +48,7 @@ const Nav = () => {
                 </Link>
               </li>
             ))}
-            {session?.user ? (
-              <div className="flex">
-                <Image
-                  src={session?.user?.image || ""}
-                  alt="Profile"
-                  width={37}
-                  height={37}
-                  className="rounded-full"
-                  onClick={() => setToggleDropdown((prev) => !prev)}
-                />
 
-                {toggleDropdown && (
-                  <div className="absolute right-6 top-16 bg-white shadow-md rounded-md py-2 px-4">
-                    <Link
-                      href="/profile"
-                      className="text-sm font-inter text-gray-700 hover:text-gray-500 font-medium"
-                      onClick={() => setToggleDropdown(false)}
-                    >
-                      Profile
-                    </Link>
-
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setToggleDropdown(false);
-                        signOut();
-                      }}
-                      className="mt-2 w-full transition-all hover:text-black text-center text-sm font-inter flex items-center justify-center"
-                    >
-                      Sign Out
-                    </button>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <>
-                {providers &&
-                  Object.values(providers).map((provider: any) => (
-                    <li
-                      className="account hover:cursor-pointer"
-                      onClick={handleClick}
-                      key={provider.name}
-                    >
-                      <a className="lg:p-4 py-3 px-0 block border-b-2 border-transparent">
-                        <FontAwesomeIcon
-                          icon={faUser}
-                          className="transition duration-300 ease-in-out transform hover:scale-110"
-                        />
-                      </a>
-                    </li>
-                  ))}
-              </>
-            )}
             <li className="cart">
               <Link href="/cart" legacyBehavior>
                 <a className="lg:p-4 py-3 px-0 block border-b-2 border-transparent ">
@@ -168,36 +91,6 @@ const Nav = () => {
             >
               Cart
             </Link>
-            {!session?.user && (
-              <Link
-                href="/signin"
-                className="text-sm font-inter text-gray-700 hover:text-gray-500 font-medium mb-2"
-                onClick={() => setToggleNavDropdown(false)}
-              >
-                Sign In
-              </Link>
-            )}
-            {session?.user && (
-              <>
-                <Link
-                  href="/profile"
-                  className="text-sm font-inter text-gray-700 hover:text-gray-500 font-medium mb-2"
-                  onClick={() => setToggleNavDropdown(false)}
-                >
-                  Profile
-                </Link>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setToggleNavDropdown(false);
-                    signOut();
-                  }}
-                  className="mb-2 border-t-2 mt-2 w-full transition-all hover:text-black text-center text-sm font-inter flex items-center justify-center border-gray-300"
-                >
-                  Sign Out
-                </button>
-              </>
-            )}
           </div>
         )}
       </div>

@@ -59,7 +59,7 @@ const ProductDetail = () => {
 
     fetchData();
 
-  }, [id]);
+  }, []);
 
   if (!singleProduct) {
     return null;

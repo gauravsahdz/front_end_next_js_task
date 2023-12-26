@@ -4,7 +4,7 @@ type AlertProps = {
   type: "success" | "error";
   message: string;
   show: boolean;
-  key: number; // added prop
+  key: number;
 };
 
 const Alert = ({ type, message, show, key }: AlertProps) => {

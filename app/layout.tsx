@@ -5,8 +5,6 @@ config.autoAddCss = false;
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import Head from "next/head";
-import AuthProvider from "@/context/AuthProvider";
 import { LoaderProvider } from "@/context/LoaderProvider";
 import React from "react";
 import { AlertProvider } from "@/context/AlertProvider";
@@ -19,7 +17,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AuthProvider session={null}>
           <LoaderProvider>
             <AlertProvider>
               <Nav />
@@ -27,7 +24,6 @@ export default function RootLayout({
               <Footer />
             </AlertProvider>
           </LoaderProvider>
-        </AuthProvider>
       </body>
     </html>
   );
