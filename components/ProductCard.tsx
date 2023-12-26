@@ -27,7 +27,7 @@ const ProductCard = (product: Product) => {
 
   return (
     <div
-      className="w-72 bg-white shadow-md rounded-xl duration-500"
+      className="w-72 bg-white shadow-md rounded-xl duration-500 cursor-pointer"
       onClick={handleClick}
     >
       <Alert
@@ -40,7 +40,7 @@ const ProductCard = (product: Product) => {
         <img
           src={image}
           alt="product_image"
-          className="rounded-t-xl w-full h-72 object-contain"
+          className="rounded-t-xl w-full h-72 object-contain lg:w-64 lg:h-64 mx-auto"
         />
         <div className="px-4 py-3 w-72">
           <p className="text-lg font-bold text-black truncate block capitalize">

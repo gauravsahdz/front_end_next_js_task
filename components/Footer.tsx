@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import logo from "../public/images/footer_logo.png";
 import Image from "next/image";
-import "@/styles/components/_footer.css"; 
+import "@/styles/components/_footer.css";
 
 const Footer = () => {
   return (
@@ -14,7 +14,7 @@ const Footer = () => {
           <div className="logo space-y-2">
             <Image src={logo} alt="logo" width={100} height={50} />
             <p className="motto text-sm text-gray-300">
-              Building a modern world, one step at a time.
+              Find everything you need here
             </p>
           </div>
           <div className="space-y-2">
@@ -41,7 +41,7 @@ const Footer = () => {
           <div className="space-y-2">
             <div className="flex items-center space-x-2">
               <FontAwesomeIcon icon={faPhone} className="text-gray-300" />
-              <span className="text-gray-300">+91-9934432446</span>
+              <span className="text-gray-300">+977-9824710026</span>
             </div>
             <div className="flex items-center space-x-2">
               <FontAwesomeIcon icon={faEnvelope} className="text-gray-300" />
@@ -57,7 +57,7 @@ const Footer = () => {
         <hr className="my-4 border-gray-600" />
         <div className="footer_bottom flex flex-col md:flex-row justify-center items-center">
           <p className="text-sm text-gray-300">
-            &copy; 2023 DZ-CLOTHING. All rights reserved.
+            &copy; 2023 ONLINE-STORE. All rights reserved.
           </p>
         </div>
       </div>
