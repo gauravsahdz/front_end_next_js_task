@@ -12,9 +12,7 @@ const HomePage = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      setLoading(true);
       await getAllProducts();
-      setLoading(false);
     };
     fetchProducts();
   }, [getAllProducts, setLoading]);
