@@ -9,10 +9,6 @@ const Page = () => {
   const { searchTerm } = useParams();
   const { products } = useProductStore();
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [pagination, setPagination] = useState({
-    currentPage: 1,
-    totalPages: 1,
-  });
 
   useEffect(() => {
     const filterProducts = async () => {
@@ -26,7 +22,7 @@ const Page = () => {
   }, [searchTerm, products]);
 
   return (
-    <div className="flex-grow h-screen">
+    <div className="flex-grow h-full">
       <div className="container mx-auto p-4">
         <p>
           Showing {filteredProducts.length} results for {searchTerm}:

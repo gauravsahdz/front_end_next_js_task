@@ -4,43 +4,44 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import React from "react";
 import { Product } from "@/types/product";
-import { getProductById, getProductsByCategory } from "../../../api/product";
+// import { getProductById, getProductsByCategory } from "../../../api/product";
 import Alert from "@/components/Alert";
 import "@/styles/components/_productDetail.css";
 import Head from "next/head";
 import ProductCard from "@/components/ProductCard";
+import useProductStore from "@/reducers/useProductStore";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const [key, setKey] = React.useState(0);
   const [showAlert, setShowAlert] = React.useState(false);
-  const [product, setProduct] = React.useState<Product | null>(null);
-  const [similarProducts, setSimilarProducts] = React.useState<Product[]>([]);
+  const {
+    singleProduct,
+    getSingleProduct,
+    categoryProducts,
+    getCategoryProducts,
+  } = useProductStore();
 
   const addToCart = useCartStore((state) => state.addToCart);
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const response = await getProductById(Number(id));
-      const productsBycategory = await getProductsByCategory(
-        response.category as string
-      );
-      setProduct(response);
-      setSimilarProducts(productsBycategory);
+      await getSingleProduct(Number(id));
+      await getCategoryProducts(singleProduct?.category as string);
     };
 
     fetchData();
-  }, [id]);
+  }, [id, getCategoryProducts, getSingleProduct, singleProduct?.category]);
 
-  if (!product) {
+  if (!singleProduct) {
     return null;
   }
 
-  const { title, description, image, price } = product;
+  const { title, description, image, price } = singleProduct;
 
   const handleAddToCart = () => {
     setKey((prevKey) => prevKey + 1);
-    addToCart(product as Product);
+    addToCart(singleProduct as Product);
     setShowAlert(true);
   };
 
@@ -96,28 +97,12 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        {/* <div className="flex flex-col items-center justify-center md:px-8 lg:px-16 py-8 lg:py-16 bg-white">
-          <h1 className="text-2xl font-bold">More Images</h1>
-          <div className="flex flex-wrap justify-center items-center space-x-4">
-            {images.map((image, index) => (
-              <Image
-                key={index}
-                src={image}
-                alt={title}
-                width={100}
-                height={100}
-                className="rounded-md"
-              />
-            ))}
-          </div>
-        </div> */}
-
         {/* similar products  */}
         <div className="flex flex-col items-center justify-center md:px-8 lg:px-16 lg:py-16 bg-white">
           <h1 className="text-2xl font-bold">Similar Products</h1>
-          <section className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
-            {similarProducts?.slice(0, 4).map((product, index) => (
-              <ProductCard key={index} {...product}/>
+          <section className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
+            {categoryProducts?.map((product, index) => (
+              <ProductCard key={index} {...product} />
             ))}
           </section>
         </div>

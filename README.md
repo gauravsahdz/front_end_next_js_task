@@ -40,7 +40,7 @@ To install the web app, follow these steps:
 ## Running the App
 
 To run the web app locally, use the following command:
-    
+
     ```bash
     npm run dev
     ```
@@ -56,9 +56,19 @@ To run the web app locally, use the following command:
 The web app has the following pages:
 
 - Home Page
-- Search Page
+  - You'll find a nice looking Hero section with a search bar and a list of products.
+  - The home page shows a list of products with their images, names, and prices.
+- Search Page:
+  - The search page allows you to search for products by name just by typing in the search bar.
 - Product Details Page
+  - The product details page shows the details of a particular product.
+  - It also allows you to add the product to the cart.
+  - The page also shows the related products.
 - Cart Page
+  - The cart page shows the products that have been added to the cart.
+  - You can increase or decrease the quantity of the products in the cart.
+  - You can also remove products from the cart.
+  - The total price of the products in the cart is also displayed.
 
 ## Bonus Points
 
@@ -68,7 +78,6 @@ The following bonus points have been implemented:
 - Loading and error states during data fetching
 - Shopping cart functionality
 - Login functionality (using google authentication and next-auth)
-
 
 Assignment Description:
 

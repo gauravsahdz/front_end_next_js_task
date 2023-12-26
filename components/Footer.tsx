@@ -8,7 +8,7 @@ import "@/styles/components/_footer.css";
 
 const Footer = () => {
   return (
-    <footer className="footer bg-gray-800 text-white">
+    <footer className="footer bg-gray-800 text-white">	
       <div className="container mx-auto px-8 py-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="logo space-y-2">
