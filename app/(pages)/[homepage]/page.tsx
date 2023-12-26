@@ -4,7 +4,7 @@ import ProductCard from "../../../components/ProductCard";
 import useProductStore from "@/reducers/useProductStore";
 import { Product } from "@/types/product";
 import { LoaderContext } from "@/context/LoaderProvider";
-import Hero from "./Hero";
+import Hero from "./hero";
 
 const HomePage = () => {
   const { products, getAllProducts } = useProductStore();
