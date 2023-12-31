@@ -1,7 +1,7 @@
 "use client";
 import { useCartStore } from "@/reducers/useCartStore";
 import Image from "next/image";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { Product } from "@/types/product";
 import "@/styles/components/_productDetail.css";
@@ -12,6 +12,7 @@ import { LoaderContext } from "@/context/LoaderProvider";
 import { AlertContext } from "@/context/AlertProvider";
 
 const ProductDetail = () => {
+  const router = useRouter();
   const { id } = useParams();
   const [key, setKey] = React.useState(0);
   const { setLoading } = React.useContext(LoaderContext);
@@ -76,7 +77,6 @@ const ProductDetail = () => {
     }, 3000);
     setLoading(false);
   };
-
   return (
     <>
       <Head>
@@ -88,8 +88,6 @@ const ProductDetail = () => {
         <meta name="title" content={`${title} | Online Store`} />
         <meta name="description" content={description.slice(0, 100) + "..."} />
 
-        {/* <!-- Open Graph / Facebook --> */}
-        <meta property="og:type" content="website" />
         <meta
           property="og:url"
           content={`https://online-store-gauravsahdz.vercel.app/products/${id}`}
@@ -100,19 +98,6 @@ const ProductDetail = () => {
           content={description.slice(0, 100) + "..."}
         />
         <meta property="og:image" content={image} />
-
-        {/* <!-- Twitter --> */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta
-          property="twitter:url"
-          content={`https://online-store-gauravsahdz.vercel.app/products/${id}`}
-        />
-        <meta property="twitter:title" content={`${title} | Online Store`} />
-        <meta
-          property="twitter:description"
-          content={description.slice(0, 100) + "..."}
-        />
-        <meta property="twitter:image" content={image} />
       </Head>
       <div className="product_detail_container flex flex-col items-center justify-center w-full px-4 lg:px-0">
         <div className="flex flex-col lg:flex-row items-center justify-center space-y-4 lg:space-y-0 lg:space-x-4 md:px-8 lg:px-16 lg:py-16 bg-white">
