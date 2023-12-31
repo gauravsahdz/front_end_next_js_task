@@ -92,7 +92,7 @@ const ProductDetail = () => {
         <meta property="og:type" content="website" />
         <meta
           property="og:url"
-          content="https://online-store-gauravsahdz.vercel.app/"
+          content={`https://online-store-gauravsahdz.vercel.app/${id}`}
         />
         <meta property="og:title" content={`${title} | Online Store`} />
         <meta
@@ -105,7 +105,7 @@ const ProductDetail = () => {
         <meta property="twitter:card" content="summary_large_image" />
         <meta
           property="twitter:url"
-          content="https://online-store-gauravsahdz.vercel.app/"
+          content={`https://online-store-gauravsahdz.vercel.app/${id}`}
         />
         <meta property="twitter:title" content={`${title} | Online Store`} />
         <meta
