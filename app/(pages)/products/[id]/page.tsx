@@ -84,16 +84,18 @@ const ProductDetail = () => {
         <title>{title} | Online Store</title>
         <meta name="title" content={`${title} | Online Store`} />
         <meta name="description" content={description.slice(0, 100) + "..."} />
-        <meta property="og:image:secure_url" content={image} />
         <meta
           property="og:url"
           content={`https://online-store-gauravsahdz.vercel.app/products/${id}`}
         />
+        <meta property="og:image" content={image} />
+        
         <meta property="og:title" content={`${title} | Online Store`} />
         <meta
           property="og:description"
           content={description.slice(0, 100) + "..."}
         />
+        <script>window.prerender=false</script>
       </Head>
       <div className="product_detail_container flex flex-col items-center justify-center w-full px-4 lg:px-0">
         <div className="flex flex-col lg:flex-row items-center justify-center space-y-4 lg:space-y-0 lg:space-x-4 md:px-8 lg:px-16 lg:py-16 bg-white">
