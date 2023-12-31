@@ -4,10 +4,9 @@ type AlertProps = {
   type: "success" | "error";
   message: string;
   show: boolean;
-  key: number;
 };
 
-const Alert = ({ type, message, show, key }: AlertProps) => {
+const Alert = ({ type, message, show }: AlertProps) => {
   useEffect(() => {
     setTimeout(() => {
       document.querySelector(
@@ -30,7 +29,6 @@ const Alert = ({ type, message, show, key }: AlertProps) => {
       }
       data-dismissible="alert"
       style={{ position: "fixed" }} // added style
-      key={key} // added key
     >
       <div className="mr-12">{message}</div>
       <div

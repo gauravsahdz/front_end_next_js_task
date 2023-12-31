@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <html>
       <Head>
         {/* <!-- Primary Meta Tags --> */}
         <title>Online Store</title>
@@ -68,6 +68,6 @@ export default function RootLayout({
           </AlertProvider>
         </LoaderProvider>
       </body>
-    </>
+    </html>
   );
 }
