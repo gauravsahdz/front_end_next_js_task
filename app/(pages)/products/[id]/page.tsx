@@ -84,7 +84,7 @@ const ProductDetail = () => {
         <title>{title} | Online Store</title>
         <meta name="title" content={`${title} | Online Store`} />
         <meta name="description" content={description.slice(0, 100) + "..."} />
-        <meta property="og:image" content={image} />
+        <meta property="og:image:secure_url" content={image} />
         <meta
           property="og:url"
           content={`https://online-store-gauravsahdz.vercel.app/products/${id}`}
