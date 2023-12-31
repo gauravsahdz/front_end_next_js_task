@@ -58,7 +58,6 @@ const ProductDetail = () => {
     };
 
     fetchData();
-
   }, []);
 
   if (!singleProduct) {
@@ -81,18 +80,39 @@ const ProductDetail = () => {
   return (
     <>
       <Head>
-        <title>{title}</title>
-        <meta
-          name="description"
-          content="Modern T-shirt and Hoodies for your everyday style."
-          key="desc"
-        />
-        <meta name="og:image" content={image} key="og-image" />
-        <meta name="og:title" content={title} key="og-title" />
-        <meta name="og:description" content={description} key="og-desc" />
-        <meta name="keywords" content="men-style" />
-        <meta name="author" content="Gaurav Sah" />
+        <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        {/* <!-- Primary Meta Tags --> */}
+        <title>{title} | Online Store</title>
+        <meta name="title" content={`${title} | Online Store`} />
+        <meta name="description" content={description.slice(0, 100) + "..."} />
+
+        {/* <!-- Open Graph / Facebook --> */}
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://online-store-gauravsahdz.vercel.app/"
+        />
+        <meta property="og:title" content={`${title} | Online Store`} />
+        <meta
+          property="og:description"
+          content={description.slice(0, 100) + "..."}
+        />
+        <meta property="og:image" content={image} />
+
+        {/* <!-- Twitter --> */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+          property="twitter:url"
+          content="https://online-store-gauravsahdz.vercel.app/"
+        />
+        <meta property="twitter:title" content={`${title} | Online Store`} />
+        <meta
+          property="twitter:description"
+          content={description.slice(0, 100) + "..."}
+        />
+        <meta property="twitter:image" content={image} />
       </Head>
       <div className="product_detail_container flex flex-col items-center justify-center w-full px-4 lg:px-0">
         <div className="flex flex-col lg:flex-row items-center justify-center space-y-4 lg:space-y-0 lg:space-x-4 md:px-8 lg:px-16 lg:py-16 bg-white">
