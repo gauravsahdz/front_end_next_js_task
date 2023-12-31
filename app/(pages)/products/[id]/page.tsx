@@ -12,7 +12,6 @@ import { LoaderContext } from "@/context/LoaderProvider";
 import { AlertContext } from "@/context/AlertProvider";
 
 const ProductDetail = () => {
-  const router = useRouter();
   const { id } = useParams();
   const [key, setKey] = React.useState(0);
   const { setLoading } = React.useContext(LoaderContext);
@@ -78,56 +77,36 @@ const ProductDetail = () => {
     setLoading(false);
   };
   return (
-    <>
-      <Head>
-        {/* <!-- Primary Meta Tags --> */}
-        <title>{title} | Online Store</title>
-        <meta name="title" content={`${title} | Online Store`} />
-        <meta name="description" content={description.slice(0, 100) + "..."} />
-        <meta
-          property="og:url"
-          content={`https://online-store-gauravsahdz.vercel.app/products/${id}`}
-        />
-        <meta property="og:image" content={image} />
-        
-        <meta property="og:title" content={`${title} | Online Store`} />
-        <meta
-          property="og:description"
-          content={description.slice(0, 100) + "..."}
-        />
-        <script>window.prerender=false</script>
-      </Head>
-      <div className="product_detail_container flex flex-col items-center justify-center w-full px-4 lg:px-0">
-        <div className="flex flex-col lg:flex-row items-center justify-center space-y-4 lg:space-y-0 lg:space-x-4 md:px-8 lg:px-16 lg:py-16 bg-white">
-          <Image src={image} alt={title} width={300} height={300} />
-          <div className="flex flex-col justify-center items-start space-y-4 w-full lg:w-1/2 px-4 lg:px-0 lg:py-8 md:py-8 lg:py-0">
-            <h1 className="text-2xl font-bold">{title}</h1>
-            <p className="text-gray-600 text-justify">{description}</p>
+    <div className="product_detail_container flex flex-col items-center justify-center w-full px-4 lg:px-0">
+      <div className="flex flex-col lg:flex-row items-center justify-center space-y-4 lg:space-y-0 lg:space-x-4 md:px-8 lg:px-16 lg:py-16 bg-white">
+        <Image src={image} alt={title} width={300} height={300} />
+        <div className="flex flex-col justify-center items-start space-y-4 w-full lg:w-1/2 px-4 lg:px-0 lg:py-8 md:py-8 lg:py-0">
+          <h1 className="text-2xl font-bold">{title}</h1>
+          <p className="text-gray-600 text-justify">{description}</p>
 
-            <p className="text-gray-600">Price: ${price}</p>
+          <p className="text-gray-600">Price: ${price}</p>
 
-            <div className="flex space-x-4 justify-center">
-              <button
-                onClick={handleAddToCart}
-                className="bg-black text-white px-4 py-2 rounded-md border border-black hover:bg-white hover:text-black transition duration-500"
-              >
-                Add to Cart
-              </button>
-            </div>
+          <div className="flex space-x-4 justify-center">
+            <button
+              onClick={handleAddToCart}
+              className="bg-black text-white px-4 py-2 rounded-md border border-black hover:bg-white hover:text-black transition duration-500"
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
-
-        {/* similar products  */}
-        <div className="flex flex-col items-center justify-center md:px-8 lg:px-16 lg:py-16 bg-white">
-          <h1 className="text-2xl font-bold">Similar Products</h1>
-          <section className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
-            {categoryProducts?.map((product, index) => (
-              <ProductCard key={index} {...product} />
-            ))}
-          </section>
-        </div>
       </div>
-    </>
+
+      {/* similar products  */}
+      <div className="flex flex-col items-center justify-center md:px-8 lg:px-16 lg:py-16 bg-white">
+        <h1 className="text-2xl font-bold">Similar Products</h1>
+        <section className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
+          {categoryProducts?.map((product, index) => (
+            <ProductCard key={index} {...product} />
+          ))}
+        </section>
+      </div>
+    </div>
   );
 };
 
