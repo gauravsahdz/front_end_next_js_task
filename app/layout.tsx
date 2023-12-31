@@ -18,9 +18,6 @@ export default function RootLayout({
   return (
     <>
       <Head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
         {/* <!-- Primary Meta Tags --> */}
         <title>Online Store</title>
         <meta name="title" content="Online Store" />

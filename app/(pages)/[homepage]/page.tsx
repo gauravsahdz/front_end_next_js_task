@@ -5,6 +5,7 @@ import useProductStore from "@/reducers/useProductStore";
 import { LoaderContext } from "@/context/LoaderProvider";
 import Hero from "./hero";
 import { AlertContext } from "@/context/AlertProvider";
+import Head from "next/head";
 
 const HomePage = () => {
   const { products, getAllProducts } = useProductStore();
@@ -34,22 +35,68 @@ const HomePage = () => {
   const randomProduct = products[Math.floor(Math.random() * products.length)];
 
   return (
-    <div className="flex flex-col min-h-96">
-      {/* Hero Section */}
-      <Hero {...randomProduct} />
+    <>
+      <Head>
+        {/* <!-- Primary Meta Tags --> */}
+        <title>Online Store</title>
+        <meta name="title" content="Online Store" />
+        <meta
+          name="description"
+          content="Shop Clothing, personalizations, regular use, ornaments, ect...."
+        />
 
-      {/* Products Section */}
-      <div className="flex-grow">
-        <div className="container mx-auto p-4">
-          <h1 className="text-2xl font-bold mb-4 text-center">Our Products</h1>
-          <section className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
-            {products?.map((product: any, index: number) => (
-              <ProductCard key={index} {...product} />
-            ))}
-          </section>
+        {/* <!-- Open Graph / Facebook --> */}
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://online-store-gauravsahdz.vercel.app/"
+        />
+        <meta property="og:title" content="Online Store" />
+        <meta
+          property="og:description"
+          content="Shop Clothing, personalizations, regular use, ornaments, ect...."
+        />
+        <meta
+          property="og:image"
+          content="https://ogcdn.net/e4b8c678-7bd5-445d-ba03-bfaad510c686/v3/OnlineStore/Shop%20what%20you%20need%20before%20it%20gets%20away/https%3A%2F%2Fopengraph.b-cdn.net%2Fproduction%2Fdocuments%2F4148343e-28ad-46af-bd12-4a5b3a4535dd.jpg%3Ftoken%3Dw2GvI2CKmpv4N3xkvx_zIHs771wNr9uSGZtq7jf62PQ%26height%3D800%26width%3D1200%26expires%3D33240006197/og.png"
+        />
+
+        {/* <!-- Twitter --> */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+          property="twitter:url"
+          content="https://online-store-gauravsahdz.vercel.app/"
+        />
+        <meta property="twitter:title" content="Online Store" />
+        <meta
+          property="twitter:description"
+          content="Shop Clothing, personalizations, regular use, ornaments, ect...."
+        />
+        <meta
+          property="twitter:image"
+          content="https://ogcdn.net/e4b8c678-7bd5-445d-ba03-bfaad510c686/v3/OnlineStore/Shop%20what%20you%20need%20before%20it%20gets%20away/https%3A%2F%2Fopengraph.b-cdn.net%2Fproduction%2Fdocuments%2F4148343e-28ad-46af-bd12-4a5b3a4535dd.jpg%3Ftoken%3Dw2GvI2CKmpv4N3xkvx_zIHs771wNr9uSGZtq7jf62PQ%26height%3D800%26width%3D1200%26expires%3D33240006197/og.png"
+        />
+      </Head>
+
+      <div className="flex flex-col min-h-96">
+        {/* Hero Section */}
+        <Hero {...randomProduct} />
+
+        {/* Products Section */}
+        <div className="flex-grow">
+          <div className="container mx-auto p-4">
+            <h1 className="text-2xl font-bold mb-4 text-center">
+              Our Products
+            </h1>
+            <section className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
+              {products?.map((product: any, index: number) => (
+                <ProductCard key={index} {...product} />
+              ))}
+            </section>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
