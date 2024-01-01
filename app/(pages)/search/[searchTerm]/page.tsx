@@ -1,4 +1,3 @@
-"use client";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import useProductStore from "@/reducers/useProductStore";
@@ -6,35 +5,48 @@ import { Product } from "@/types/product";
 import ProductCard from "@/components/ProductCard";
 import { LoaderContext } from "@/context/LoaderProvider";
 import { AlertContext } from "@/context/AlertProvider";
+import { getProducts } from "@/app/api/product";
 
-const Page = () => {
-  const { searchTerm } = useParams();
-  const { products } = useProductStore();
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const { setLoading } = React.useContext(LoaderContext);
-  const { showAlert } = React.useContext(AlertContext);
+export async function generateMetadata({
+  params,
+}: {
+  params: {
+    searchTerm: string;
+  };
+}) {
+  return {
+    title: `${params.searchTerm}`,
+    description: `Search results for ${params.searchTerm}`,
+    alternates: {
+      canonical: `/search/${params.searchTerm}`,
+    },
+  };
+}
 
-  useEffect(() => {
-    const filterProducts = async () => {
-      try {
-        setLoading(true);
-        const filtered = products.filter((p) =>
-          p.title.toLowerCase().includes(searchTerm)
-        );
-        setFilteredProducts(filtered);
-      } catch (error) {
-        setLoading(true);
-        showAlert(true, "error", "Error fetching products", 0);
-        setTimeout(() => {
-          showAlert(false, "error", "Error fetching products", 0);
-        }, 2000);
-      } finally {
-        setLoading(false);
-      }
-    };
+export async function generateStaticParams() {
+  const products = await getProducts();
 
-    filterProducts();
-  }, [searchTerm, products]);
+  if (!products) return [];
+
+  return products.map((product: Product) => ({
+    searchTerm: product.title.toLowerCase(),
+  }));
+}
+
+const page = async ({
+  params: { searchTerm },
+}: {
+  params: {
+    searchTerm: string;
+  };
+}) => {
+  const products = await getProducts();
+
+  if (!products) return [];
+
+  const filteredProducts = products.filter((product: Product) =>
+    product.title.toLowerCase().includes(searchTerm)
+  );
 
   return (
     <div className="flex flex-row h-full">
@@ -56,4 +68,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default page;

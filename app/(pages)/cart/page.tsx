@@ -10,6 +10,7 @@ type CartItemProps = {
   onDecrement: () => void;
 };
 
+
 const CartItem: React.FC<CartItemProps> = ({
   item,
   onIncrement,
