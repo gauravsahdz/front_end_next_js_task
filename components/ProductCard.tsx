@@ -5,6 +5,7 @@ import { Product } from "@/types/product";
 import { useCartStore } from "@/reducers/useCartStore";
 import { LoaderContext } from "@/context/LoaderProvider";
 import { AlertContext } from "@/context/AlertProvider";
+import Image from "next/image";
 
 const ProductCard = (product: Product) => {
   const router = useRouter();
@@ -39,10 +40,12 @@ const ProductCard = (product: Product) => {
       onClick={handleClick}
     >
       <a>
-        <img
+        <Image
           src={image}
           alt="product_image"
           className="rounded-t-xl w-full h-72 object-contain lg:w-64 lg:h-64 mx-auto"
+          width={300}
+          height={300}
         />
         <div className="px-4 py-3 w-72">
           <p className="text-lg font-bold text-black truncate block capitalize">

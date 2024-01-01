@@ -1,5 +1,6 @@
 import { LoaderContext } from "@/context/LoaderProvider";
 import { Product } from "@/types/product";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -42,10 +43,12 @@ const Hero = (product: Product) => {
         </button>
       </div>
       <div className="flex justify-center mx-auto">
-        <img
+        <Image
           src={product?.image}
           alt="carousel image"
           className="rounded-t-xl object-contain mt-4 lg:mt-0 w-96 h-52 lg:w-full lg:h-72"
+          width={300}
+          height={300}
         />
       </div>
     </div>
