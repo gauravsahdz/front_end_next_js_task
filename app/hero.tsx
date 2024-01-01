@@ -49,6 +49,7 @@ const Hero = (product: Product) => {
           className="rounded-t-xl object-contain mt-4 lg:mt-0 w-96 h-52 lg:w-full lg:h-72"
           width={300}
           height={300}
+          loading="eager"
         />
       </div>
     </div>
