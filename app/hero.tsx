@@ -9,7 +9,7 @@ const Hero = (product: Product) => {
 
   const handleClick = () => {
     setLoading(true);
-    router.push(`/products/${product?.id}`);
+    router.push(`/products/${product.id}`);
     setLoading(false);
   };
 

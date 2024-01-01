@@ -1,5 +1,0 @@
-User-Agent: *
-Allow: /
-Disallow: /private/
-
-Sitemap: http://www.ekspertbudowlany.pl/sitemap.xml

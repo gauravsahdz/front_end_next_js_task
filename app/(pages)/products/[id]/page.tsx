@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import React, { useEffect } from "react";
 import { Product } from "@/types/product";
 import ProductCard from "@/components/ProductCard";
-import useProductStore from "@/reducers/useProductStore";
+import { useProductStore } from "@/reducers/useProductStore";
 import { LoaderContext } from "@/context/LoaderProvider";
 import { AlertContext } from "@/context/AlertProvider";
 import {
@@ -15,7 +15,6 @@ import {
 } from "@/app/api/product";
 import "@/styles/components/_productDetail.css";
 import { get } from "http";
-
 
 export async function generateMetadata({
   params,

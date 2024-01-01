@@ -52,4 +52,4 @@ const useProductStore = create<ProductStore>((set) => ({
   },
 }));
 
-export default useProductStore;
+export { useProductStore };
