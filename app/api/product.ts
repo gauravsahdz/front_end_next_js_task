@@ -6,7 +6,6 @@ async function getProducts() {
     const response = await axios.get("https://fakestoreapi.com/products");
     return response.data;
   } catch (error) {
-    console.error("Error retrieving products:", error);
     throw error;
   }
 }
@@ -19,7 +18,6 @@ async function getProductById(productId: number) {
     );
     return response.data;
   } catch (error) {
-    console.error(`Error retrieving product with ID ${productId}:`, error);
     throw error;
   }
 }
@@ -32,7 +30,6 @@ async function getCategories() {
     );
     return response.data;
   } catch (error) {
-    console.error(`Error retrieving categories:`, error);
     throw error;
   }
 }
@@ -45,7 +42,6 @@ async function getProductsByCategory(category: string) {
     );
     return response.data;
   } catch (error) {
-    console.error(`Error retrieving products in category ${category}:`, error);
     throw error;
   }
 }
