@@ -36,7 +36,13 @@ export const metadata = {
   alternates: {
     canonical: "/",
   },
-  
+  openGraph: {
+    title: "OnlineStore",
+    type: "website",
+    locale: "en_IN",
+    url: "/",
+  },
+  viewport: "width=device-width, initial-scale=1.0",
 };
 
 export default function RootLayout({
@@ -45,7 +51,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
+    <html lang="en">
       <body>
         <LoaderProvider>
           <AlertProvider>

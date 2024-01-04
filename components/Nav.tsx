@@ -26,7 +26,7 @@ const Nav = () => {
         <Link href="/" legacyBehavior>
           <h1 className="font-bold text-2xl ml-0 lg:ml-8">
             Online
-            <span className="text-indigo-400">Store</span>
+            <span className="text-indigo-600">Store</span>
           </h1>
         </Link>
       </div>

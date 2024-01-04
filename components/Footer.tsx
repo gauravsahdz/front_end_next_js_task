@@ -8,7 +8,7 @@ import "@/styles/components/_footer.css";
 
 const Footer = () => {
   return (
-    <footer className="footer bg-gray-800 text-white">	
+    <footer className="footer bg-gray-800 text-white">
       <div className="container mx-auto px-8 py-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="logo space-y-2">
@@ -22,17 +22,17 @@ const Footer = () => {
             <ul className="text-sm">
               <li>
                 <Link href="/" legacyBehavior>
-                  <a className="hover:underline">About us</a>
+                  <a className="hover:underline p-2">About us</a>
                 </Link>
               </li>
               <li>
                 <Link href="/shop" legacyBehavior>
-                  <a className="hover:underline">Privacy policy</a>
+                  <a className="hover:underline  p-2">Privacy policy</a>
                 </Link>
               </li>
               <li>
                 <Link href="/contact" legacyBehavior>
-                  <a className="hover:underline">Terms of service</a>
+                  <a className="hover:underline p-2">Terms of service</a>
                 </Link>
               </li>
             </ul>
