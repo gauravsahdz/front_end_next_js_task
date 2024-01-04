@@ -16,7 +16,26 @@ export const metadata = {
     template: `%s | OnlineStore`,
   },
   description:
-    "Shop Clothing, personalizations, regular use, ornaments, ect....",
+    "Shop Clothing, personalizations, regular use, ornaments, etc. Free Shipping on All Orders & 7 Day Money Back Guarantee. Receive 30% Off Your First Purchase.",
+  keywords: [
+    "OnlineStore",
+    "OnlineStore.com",
+    "OnlineStore.com",
+    "OnlineStore.com",
+    "OnlineStore.com",
+    "Products",
+    "Categories",
+    "Discounts",
+    "Offers",
+    "Deals",
+    "Clothing",
+    "Personalizations",
+    "Ornaments",
+    "Regular Use",
+  ],
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({

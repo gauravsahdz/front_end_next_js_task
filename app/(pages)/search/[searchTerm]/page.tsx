@@ -1,6 +1,6 @@
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import useProductStore from "@/reducers/useProductStore";
+// import useProductStore from "@/reducers/useProductStore";
 import { Product } from "@/types/product";
 import ProductCard from "@/components/ProductCard";
 import { LoaderContext } from "@/context/LoaderProvider";
@@ -20,6 +20,22 @@ export async function generateMetadata({
     alternates: {
       canonical: `/search/${params.searchTerm}`,
     },
+    keywords: [
+      "OnlineStore",
+      "OnlineStore.com",
+      "OnlineStore.com",
+      "OnlineStore.com",
+      "OnlineStore.com",
+      "Products",
+      "Categories",
+      "Discounts",
+      "Offers",
+      "Deals",
+      "Clothing",
+      "Personalizations",
+      "Ornaments",
+      "Regular Use",
+    ],
   };
 }
 

@@ -29,6 +29,22 @@ export async function generateMetadata({
       return {
         title: "Not Found",
         description: "The page you are looking for does not exist.",
+        keywords: [
+          "OnlineStore",
+          "OnlineStore.com",
+          "OnlineStore.com",
+          "OnlineStore.com",
+          "OnlineStore.com",
+          "Products",
+          "Categories",
+          "Discounts",
+          "Offers",
+          "Deals",
+          "Clothing",
+          "Personalizations",
+          "Ornaments",
+          "Regular Use",
+        ],
       };
 
     return {
@@ -37,12 +53,44 @@ export async function generateMetadata({
       alternates: {
         canonical: `/products/${product.id}`,
       },
+      keywords: [
+        "OnlineStore",
+        "OnlineStore.com",
+        "OnlineStore.com",
+        "OnlineStore.com",
+        "OnlineStore.com",
+        "Products",
+        "Categories",
+        "Discounts",
+        "Offers",
+        "Deals",
+        "Clothing",
+        "Personalizations",
+        "Ornaments",
+        "Regular Use",
+      ],
     };
   } catch (error) {
     console.error(error);
     return {
       title: "Not Found",
       description: "The page you are looking for does not exist.",
+      keywords: [
+        "OnlineStore",
+        "OnlineStore.com",
+        "OnlineStore.com",
+        "OnlineStore.com",
+        "OnlineStore.com",
+        "Products",
+        "Categories",
+        "Discounts",
+        "Offers",
+        "Deals",
+        "Clothing",
+        "Personalizations",
+        "Ornaments",
+        "Regular Use",
+      ],
     };
   }
 }
@@ -72,7 +120,13 @@ const ProductDetail = async ({
   return (
     <div className="product_detail_container flex flex-col items-center justify-center w-full px-4 lg:px-0">
       <div className="flex flex-col lg:flex-row items-center justify-center space-y-4 lg:space-y-0 lg:space-x-4 md:px-8 lg:px-16 lg:py-16 bg-white">
-        <Image src={post.image} alt={post.title} width={300} height={300} loading="eager" />
+        <Image
+          src={post.image}
+          alt={post.title}
+          width={300}
+          height={300}
+          loading="eager"
+        />
         <div className="flex flex-col justify-center items-start space-y-4 w-full lg:w-1/2 px-4 lg:px-0 lg:py-8 md:py-8 lg:py-0">
           <h1 className="text-2xl font-bold">{post.title}</h1>
           <p className="text-gray-600 text-justify">{post.description}</p>
