@@ -1,11 +1,16 @@
 "use client";
 import React, { useEffect } from "react";
-import ProductCard from "../components/ProductCard";
+// import ProductCard from "../components/ProductCard";
 import { useProductStore } from "@/reducers/useProductStore";
 import { LoaderContext } from "@/context/LoaderProvider";
 import Hero from "./hero";
 import { AlertContext } from "@/context/AlertProvider";
 import Head from "next/head";
+import dynamic from "next/dynamic";
+
+const ProductCard = dynamic(() => import("@/components/ProductCard"), {
+  ssr: false,
+});
 
 const Page = () => {
   const { products, getAllProducts } = useProductStore();
