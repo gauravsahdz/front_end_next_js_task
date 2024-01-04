@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import React, { useEffect } from "react";
 import { Product } from "@/types/product";
-import ProductCard from "@/components/ProductCard";
 import { useProductStore } from "@/reducers/useProductStore";
 import { LoaderContext } from "@/context/LoaderProvider";
 import { AlertContext } from "@/context/AlertProvider";
@@ -15,6 +14,7 @@ import {
 } from "@/app/api/product";
 import "@/styles/components/_productDetail.css";
 import { get } from "http";
+import dynamic from "next/dynamic";
 
 export async function generateMetadata({
   params,
@@ -93,6 +93,10 @@ export async function generateMetadata({
     };
   }
 }
+
+const ProductCard = dynamic(() => import("@/components/ProductCard"), {
+  ssr: false,
+});
 
 export async function generateStaticParams() {
   const posts = await getProducts();

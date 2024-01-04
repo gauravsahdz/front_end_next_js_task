@@ -2,10 +2,12 @@ import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 // import useProductStore from "@/reducers/useProductStore";
 import { Product } from "@/types/product";
-import ProductCard from "@/components/ProductCard";
 import { LoaderContext } from "@/context/LoaderProvider";
 import { AlertContext } from "@/context/AlertProvider";
 import { getProducts } from "@/app/api/product";
+import dynamic from "next/dynamic";
+
+const ProductCard = dynamic(() => import("@/components/ProductCard"), { ssr: false });
 
 export async function generateMetadata({
   params,
