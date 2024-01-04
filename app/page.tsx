@@ -42,7 +42,7 @@ const Page = () => {
       {/* Products Section */}
       <div className="flex-grow">
         <div className="container mx-auto p-4">
-          <h1 className="text-2xl font-bold mb-4 text-center">Our Products</h1>
+          <h2 className="text-2xl font-bold mb-4 text-center">Our Products</h2>
           <section className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
             {products?.map((product: any, index: number) => (
               <ProductCard key={index} {...product} />
